@@ -374,6 +374,41 @@
   background: currentColor;
 }
 
+/* --- Desktop live open-status pill --- */
+.nav-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 13px;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: #d99a90;
+  border: 1px solid rgba(217, 154, 144, 0.4);
+  background: rgba(255, 251, 240, 0.06);
+  transition: color 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+}
+
+.nav-status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.nav-status.is-open {
+  color: #8fc79b;
+  border-color: rgba(143, 199, 155, 0.42);
+}
+
+.nav-status.is-solid {
+  background: rgba(255, 251, 240, 0.1);
+  border-color: rgba(211, 176, 114, 0.3);
+}
+
 .nav-drawer-hours {
   font-size: 0.8rem;
   font-weight: 300;
@@ -439,6 +474,10 @@
 
   .navbar .btn-nav,
   .navbar .theme-toggle {
+    display: none;
+  }
+
+  .nav-status {
     display: none;
   }
 

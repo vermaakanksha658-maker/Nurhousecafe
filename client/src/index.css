@@ -404,6 +404,32 @@ html.nav-hidden .meal-nav {
   color: var(--caramel) !important;
 }
 
+/* --- Eyebrow gold rule (hairline system) --- */
+.kicker::before,
+.stats-kicker::before,
+.news-kicker::before {
+  content: '';
+  display: inline-block;
+  width: 26px;
+  height: 1px;
+  margin-right: 12px;
+  vertical-align: middle;
+  background: var(--gold);
+  transform: translateY(-2px);
+}
+
+.hero-script::before,
+.spot-kicker::before {
+  content: '';
+  display: inline-block;
+  width: 26px;
+  height: 1px;
+  margin-right: 12px;
+  vertical-align: middle;
+  background: var(--gold);
+  transform: translateY(-2px);
+}
+
 .hero-script::after {
   display: none !important;
 }
@@ -1044,4 +1070,33 @@ html[data-theme='dark'] .navbar-solid {
 .spot:hover {
   transform: translateY(-6px) !important;
   box-shadow: 0 26px 54px rgba(46, 36, 14, 0.16) !important;
+}
+
+/* --- Button cursor magnetism + arrow slide --- */
+.btn {
+  --mag-x: 0px;
+  --mag-y: 0px;
+}
+
+.btn-primary:hover {
+  transform: translate(calc(var(--mag-x) * 0.6), calc(-2px + var(--mag-y) * 0.6)) !important;
+}
+
+.hero-link:hover,
+.about-btn:hover,
+.footer-cta-btn:hover {
+  transform: translate(var(--mag-x), var(--mag-y));
+}
+
+.btn svg {
+  transition: transform 0.35s var(--ease);
+}
+
+.btn:hover svg {
+  transform: translateX(4px);
+}
+
+.hero-link svg,
+.about-btn svg {
+  transition: transform 0.35s var(--ease);
 }

@@ -542,6 +542,23 @@ export default function MenuPanel({ variant = 'full', limit = 6 }) {
         <span className="menu-wisp"></span>
       </div>
 
+      {isPreview && (
+        <div className="menu-marquee" aria-hidden="true">
+          <div className="menu-marquee-track">
+            {[0, 1].map((k) => (
+              <span className="menu-marquee-group" key={k}>
+                {['Coffee', 'Matcha', 'Bakes', 'Cold Brew', 'Shaah', 'Date Latte'].map((w) => (
+                  <span className="menu-marquee-item" key={w}>
+                    {w}
+                    <span className="menu-marquee-dot" aria-hidden="true">•</span>
+                  </span>
+                ))}
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+
       <div className="container">
         {isPreview && (
           <div className={`section-head reveal ${inView ? 'in-view' : ''}`} ref={ref}>

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import useOpenStatus from '../hooks/useOpenStatus.js';
 import './Hero.css';
 
 const DESKTOP_IMAGE = '/photos/hero-2.jpg';
@@ -6,6 +7,7 @@ const MOBILE_IMAGE = '/photos/ig-06.jpg';
 
 export default function Hero() {
   const [atTop, setAtTop] = useState(true);
+  const status = useOpenStatus();
 
   useEffect(() => {
     const onScroll = () => setAtTop(window.scrollY < 30);
@@ -60,6 +62,25 @@ export default function Hero() {
           <span className="hero-trust-dot">&middot;</span>
           <span>Dine-in &amp; Takeaway</span>
         </div>
+
+        <ul className="hero-spec">
+          <li>
+            <span className="hero-spec-label">Find us</span>
+            <span className="hero-spec-value">515 S 4th St</span>
+          </li>
+          <li>
+            <span className="hero-spec-label">Today</span>
+            <span className="hero-spec-value">{status.sub.replace(/^Opens /, '')}</span>
+          </li>
+          <li>
+            <span className="hero-spec-label">Rated</span>
+            <span className="hero-spec-value">4.5 ★ &middot; 155+</span>
+          </li>
+          <li>
+            <span className="hero-spec-label">Proudly</span>
+            <span className="hero-spec-value">Somali-owned</span>
+          </li>
+        </ul>
       </div>
 
       <a href="#story" className={`hero-scroll ${atTop ? 'is-shown' : ''}`} aria-label="Scroll down">

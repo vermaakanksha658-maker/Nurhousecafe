@@ -252,12 +252,17 @@
   padding: 0;
   font-size: 0.9rem;
   font-weight: 300;
+  border-top: 1px solid rgba(207, 230, 216, 0.13);
+}
+
+.footer-links li:first-child {
+  border-top: 0;
 }
 
 .footer-links a {
   position: relative;
-  display: inline-block;
-  padding: 5px 0;
+  display: block;
+  padding: 9px 0;
   transition: color 0.25s ease, padding-left 0.25s ease;
 }
 

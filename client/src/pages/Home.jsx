@@ -8,15 +8,18 @@ import Testimonials from '../components/Testimonials.jsx';
 import Gallery from '../components/Gallery.jsx';
 import VisitUs from '../components/VisitUs.jsx';
 import Reservation from '../components/Reservation.jsx';
+import FAQ from '../components/FAQ.jsx';
 import Newsletter from '../components/Newsletter.jsx';
 import Footer from '../components/Footer.jsx';
 import Preloader from '../components/Preloader.jsx';
 import BackToTop from '../components/BackToTop.jsx';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import useButtonMagnet from '../hooks/useButtonMagnet.js';
 
 function Home() {
   const location = useLocation();
+  useButtonMagnet();
 
   useEffect(() => {
     if (location.hash) {
@@ -44,6 +47,7 @@ function Home() {
         <Gallery />
         <VisitUs />
         <Reservation />
+        <FAQ />
         <Newsletter />
       </main>
       <Footer />

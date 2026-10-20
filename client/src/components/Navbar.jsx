@@ -258,6 +258,14 @@ export default function Navbar() {
           </ul>
 
           <div className="nav-right">
+            <span
+              className={`nav-status ${status.open ? 'is-open' : ''} ${solid ? 'is-solid' : ''}`}
+              title={status.sub}
+            >
+              <span className="nav-status-dot" aria-hidden="true"></span>
+              {status.open ? 'Open now' : 'Closed'}
+            </span>
+
             {customer ? (
               <div className="cust-chip-wrap" ref={custWrapRef} style={{ position: 'relative' }}>
                 <button

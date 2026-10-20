@@ -124,10 +124,18 @@
 
 .why-row-num {
   font-family: var(--font-serif);
-  font-size: 2.4rem;
+  font-size: 3.1rem;
   line-height: 1;
   letter-spacing: -0.02em;
-  color: var(--caramel);
+  color: transparent;
+  -webkit-text-stroke: 1.4px var(--caramel);
+  text-stroke: 1.4px var(--caramel);
+  opacity: 0.55;
+  transition: opacity 0.35s ease, -webkit-text-stroke-color 0.35s ease;
+}
+
+.why-row:hover .why-row-num {
+  opacity: 1;
 }
 
 .why-row-icon {
@@ -221,6 +229,11 @@
 [data-theme='dark'] .why-row-num,
 [data-theme='dark'] .why-row-icon {
   color: var(--mint);
+}
+
+[data-theme='dark'] .why-row-num {
+  -webkit-text-stroke-color: var(--mint);
+  text-stroke-color: var(--mint);
 }
 
 [data-theme='dark'] .why-row:hover .why-row-icon,
