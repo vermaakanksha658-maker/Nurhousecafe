@@ -1,0 +1,959 @@
+/* Palette derived from @nurhousecafe Instagram feed:
+   deep forest green (#092E1D / #0A3420) + brass (#A7914F); neutral white base */
+:root {
+  --espresso: #0a1f14;
+  --mocha: #0e2e1e;
+  --coffee: #124a31;
+  --caramel: #1e7a4f;
+  --emerald-deep: #092e1c;
+  --latte: #ececec;
+  --cream: #ffffff;
+  --gold: #b08d4c;
+  --pg-bg: #ffffff;
+  --surface: #ffffff;
+  --section-alt: #f9f9f9;
+  --text: #14291b;
+  --text-muted: #5b6f63;
+  --card-muted: #5b6f63;
+  --gold-text: #80622e;
+  --line: #e8e8e8;
+  --shadow-soft: 0 6px 18px rgba(17, 17, 17, 0.07);
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-script: 'Jost', system-ui, sans-serif;
+  --font-body: 'Jost', system-ui, sans-serif;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+  --radius: 16px;
+  color-scheme: light;
+}
+
+[data-theme='dark'] {
+  --pg-bg: #07130d;
+  --surface: #0c2016;
+  --section-alt: #091a12;
+  --text: #f2f2f2;
+  --text-muted: #c3c9c4;
+  --card-muted: #a8b0a9;
+  --line: #1a3728;
+  --shadow-soft: 0 6px 18px rgba(0, 0, 0, 0.45);
+  color-scheme: dark;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 76px;
+  overflow-x: clip;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--pg-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--coffee);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--caramel);
+}
+
+::selection {
+  background: var(--caramel);
+  color: var(--cream);
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--pg-bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: clip;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section-pad {
+  padding: 72px 0;
+}
+
+.kicker {
+  font-family: var(--font-script);
+  font-size: 1.7rem;
+  color: var(--caramel);
+  display: block;
+  line-height: 1.2;
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 4vw, 2.7rem);
+  color: var(--text);
+  margin-top: 6px;
+  transition: color 0.4s ease;
+}
+
+.section-head {
+  text-align: center;
+  margin-bottom: 54px;
+}
+
+.section-head .divider {
+  width: 70px;
+  height: 3px;
+  background: var(--gold);
+  border-radius: 3px;
+  margin: 18px auto 0;
+}
+
+.btn {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-weight: 500;
+  letter-spacing: 1px;
+  padding: 13px 30px;
+  border-radius: 40px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+}
+
+.btn-primary {
+  background: var(--caramel);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
+}
+
+.btn-primary:hover {
+  background: var(--gold);
+  color: var(--espresso);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+.btn-outline {
+  background: transparent;
+  color: #fff;
+  border: 1.5px solid rgba(255, 255, 255, 0.7);
+}
+
+.btn-outline:hover {
+  background: #fff;
+  color: var(--espresso);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--coffee);
+  border: 1.5px solid var(--coffee);
+}
+
+.btn-ghost:hover {
+  background: var(--coffee);
+  color: #fff;
+}
+
+.btn-ghost:hover,
+.btn-outline:hover {
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: translateY(1px) scale(0.97);
+}
+
+.reveal {
+  opacity: 0;
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+  will-change: opacity, transform;
+}
+
+.reveal-up {
+  transform: translateY(36px);
+}
+
+.reveal-left {
+  transform: translateX(-40px);
+}
+
+.reveal-right {
+  transform: translateX(40px);
+}
+
+.reveal-zoom {
+  transform: scale(0.92);
+}
+
+.reveal.in-view {
+  opacity: 1;
+  transform: none;
+}
+
+.reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+}
+
+.reveal-stagger.in-view > * {
+  opacity: 1;
+  transform: none;
+}
+
+.reveal-stagger > *:nth-child(2) {
+  transition-delay: 0.1s;
+}
+.reveal-stagger > *:nth-child(3) {
+  transition-delay: 0.2s;
+}
+.reveal-stagger > *:nth-child(4) {
+  transition-delay: 0.3s;
+}
+.reveal-stagger > *:nth-child(5) {
+  transition-delay: 0.4s;
+}
+.reveal-stagger > *:nth-child(6) {
+  transition-delay: 0.5s;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001s !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal,
+  .reveal-stagger > * {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .section-pad {
+    padding: 48px 0;
+  }
+
+  /* ===== MOBILE PERFORMANCE ===== */
+
+  /* Level 1: backdrop-filter OFF (sabse heavy effect mobile GPU ke liye).
+     Jahan blur tha wahan background thoda opaque kar diya taaki design same lage. */
+  .navbar-solid {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background-color: rgba(18,74,49, 0.96) !important;
+  }
+  .nav-backdrop {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background-color: rgba(5,15,11, 0.8) !important;
+  }
+  .cust-auth-overlay {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background-color: rgba(11,32,24, 0.88) !important;
+  }
+  .cart-overlay {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background-color: rgba(7,22,16, 0.82) !important;
+  }
+  .lb-overlay {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  .hero-stamp {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background-color: rgba(11,32,24, 0.9) !important;
+  }
+  .hero-chip {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background-color: rgba(11,32,24, 0.92) !important;
+  }
+  .menu-toolbar {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background-color: var(--pg-bg) !important;
+  }
+  .qv-overlay {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background-color: rgba(7,22,16, 0.85) !important;
+  }
+  .stat {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background-color: rgba(255,253,248, 0.1) !important;
+  }
+  .visit-map-card {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background-color: rgba(7,22,16, 0.92) !important;
+  }
+
+  /* Level 2 (soft): har animation sirf EK baar chale (infinite wali ek chakkar
+     chalke band, entry wali pehle jaisi hi). */
+  *,
+  *::before,
+  *::after {
+    animation-iteration-count: 1 !important;
+    animation-duration: 0.7s !important;
+  }
+
+  /* Level 3: bade blur wale decorative graphics mobile pe chhupao
+     (ye sirf glow/wisp hain — content pe koi asar nahi). */
+  .hero-steam,
+  .menu-wisp,
+  .stats-steam,
+  .visit-wisp,
+  .about-wisp,
+  .testi-wisp,
+  .why-amb-wisp,
+  .gallery-beam,
+  .gallery-wisp {
+    display: none !important;
+  }
+}
+
+html.nav-hidden .menu-toolbar {
+  top: 18px;
+}
+
+html.nav-hidden .meal-nav {
+  top: 40px;
+}
+
+/* ============================================================
+   SOBER THEME OVERRIDES
+   One emerald accent, warm cream base, gold only as hairline.
+   Decorative "ambient" layers removed for a calm, simple look.
+   ============================================================ */
+
+/* --- Instagram-feed photo grade (@nurhousecafe posts are dark & moody) --- */
+.gallery-item.is-loaded img,
+.gallery-item.is-loaded:hover img,
+.visit-shots img {
+  filter: brightness(0.9) saturate(0.94) contrast(1.06) !important;
+}
+
+/* --- Eyebrow text replaces the cursive/script accents --- */
+.kicker,
+.hero-script,
+.stats-kicker,
+.news-kicker,
+.spot-kicker,
+.section-head .kicker {
+  font-family: var(--font-body) !important;
+  font-size: 0.8rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 3px !important;
+  text-transform: uppercase !important;
+  font-style: normal !important;
+  line-height: 1.4 !important;
+}
+
+.kicker,
+.hero-script,
+.stats-kicker,
+.news-kicker,
+.spot-kicker {
+  color: var(--caramel) !important;
+}
+
+.hero-script::after {
+  display: none !important;
+}
+
+.logo-script,
+.pre-script {
+  font-family: var(--font-body) !important;
+  font-weight: 600 !important;
+}
+
+/* --- Remove decorative ambient layers --- */
+.hero-steam,
+.hero-rays,
+.hero-fx,
+.hero-stamp,
+.hero-halo,
+.hero-cup-tilt,
+.hero-cup-steam,
+.about-ambient,
+.about-fx,
+.about-wisp,
+.about-bean,
+.about-grain,
+.about-media-glow,
+.about-media-glow-2,
+.about-marquee-bean,
+.menu-ambient,
+.menu-glow,
+.menu-glow-2,
+.menu-stain,
+.menu-stain-2,
+.menu-wisp,
+.stats-fx,
+.stats-ripple,
+.stats-steam,
+.stats-bean,
+.stats-curve,
+.why-spot,
+.why-fx,
+.why-ambient,
+.why-amb-stain,
+.why-amb-stain-2,
+.why-amb-glow,
+.why-amb-glow-2,
+.why-amb-wisp,
+.why-amb-bean,
+.why-ring,
+.why-watermark,
+.why-border,
+.why-num,
+.testi-ambient,
+.testi-fx,
+.testi-float-quote,
+.testi-glow,
+.testi-glow-2,
+.testi-spark,
+.testi-stain,
+.testi-stain-2,
+.testi-wisp,
+.testi-ring,
+.testi-avatar-ring,
+.gallery-ambient,
+.gallery-beam,
+.gallery-beam-2,
+.gallery-glow,
+.gallery-glow-2,
+.gallery-spark,
+.gallery-stain,
+.gallery-stain-2,
+.gallery-wisp,
+.visit-ambient,
+.visit-glow,
+.visit-glow-2,
+.visit-stain,
+.visit-stain-2,
+.visit-wisp,
+.reserve-bg,
+.reserve-bg-beans,
+.reserve-bg-glow,
+.reserve-bg-glow-2,
+.news-glow,
+.news-fx,
+.news-bean,
+.news-cup-stage,
+.footer-ambient,
+.footer-amb-bean,
+.footer-amb-sheen,
+.stat-ring-wrap,
+.stat-dots,
+.steam,
+.steam-2 {
+  display: none !important;
+}
+
+.stats::before,
+.stats::after,
+.news::before,
+.why-card::before,
+.why-card::after,
+.spot::before,
+.spot-media::after {
+  display: none !important;
+}
+
+/* --- Section rhythm: light sections; Hero + Footer carry the accent --- */
+.stats,
+.why,
+.news,
+.reserve {
+  background: var(--section-alt) !important;
+  color: var(--text) !important;
+}
+
+.why .section-title.why-title,
+.news .section-title.news-title {
+  color: var(--text) !important;
+}
+
+.stats-kicker,
+.why .kicker,
+.news .news-kicker {
+  color: var(--caramel) !important;
+}
+
+/* --- Stats --- */
+.stat {
+  background: var(--surface) !important;
+  border: 1px solid var(--line) !important;
+  box-shadow: var(--shadow-soft) !important;
+}
+
+.stat:hover {
+  transform: none !important;
+  background: var(--surface) !important;
+  border-color: var(--caramel) !important;
+  box-shadow: 0 14px 30px rgba(16, 40, 28, 0.12) !important;
+}
+
+.stat-num {
+  color: var(--text) !important;
+  text-shadow: none !important;
+}
+
+.stat-label {
+  color: var(--text-muted) !important;
+}
+
+.stat-icon {
+  color: var(--caramel) !important;
+}
+
+.stat:not(:first-child)::before {
+  background: linear-gradient(to bottom, transparent, var(--line), transparent) !important;
+}
+
+/* --- Why Us: layout lives in components/WhyUs.css --- */
+
+/* --- Newsletter --- */
+.news-sub,
+.news-perks li,
+.news-proof-text,
+.news-privacy {
+  color: var(--text-muted) !important;
+}
+
+.news-proof-text strong {
+  color: var(--caramel) !important;
+}
+
+.news-proof-avatars img {
+  border-color: var(--surface) !important;
+  box-shadow: var(--shadow-soft) !important;
+}
+
+.news-offer {
+  background: var(--section-alt) !important;
+  border: 1px solid var(--line) !important;
+}
+
+.news-offer-badge {
+  background: var(--coffee) !important;
+  color: #fff !important;
+}
+
+.news-offer-text {
+  color: var(--text) !important;
+}
+
+.news-card {
+  border-top: 3px solid var(--caramel) !important;
+  box-shadow: var(--shadow-soft) !important;
+}
+
+.news-perk-icon {
+  background: var(--section-alt) !important;
+  border: 1px solid var(--line) !important;
+  color: var(--caramel) !important;
+}
+
+/* --- Barista's pick spotlight --- */
+.spot {
+  background: var(--surface) !important;
+  color: var(--text) !important;
+  box-shadow: var(--shadow-soft) !important;
+  transform: none !important;
+}
+
+.spot-media img {
+  animation: none !important;
+}
+
+.spot-body h3 {
+  color: var(--text) !important;
+}
+
+.spot-desc {
+  color: var(--text-muted) !important;
+}
+
+.spot-price,
+.spot-kicker {
+  color: var(--caramel) !important;
+}
+
+.spot-index {
+  color: var(--text-muted) !important;
+  background: var(--section-alt) !important;
+}
+
+.spot-rating {
+  color: var(--text-muted) !important;
+}
+
+.spot-dot {
+  background: var(--line) !important;
+}
+
+.spot-dot-active,
+.spot-dot-active:hover {
+  background: var(--caramel) !important;
+}
+
+.spot-progress {
+  background: var(--line) !important;
+}
+
+.spot-arrow {
+  background: var(--surface) !important;
+  border: 1px solid var(--line) !important;
+  color: var(--text) !important;
+  box-shadow: var(--shadow-soft) !important;
+}
+
+.spot-arrow:hover {
+  background: var(--caramel) !important;
+  color: #fff !important;
+}
+
+/* --- Hero: full-bleed IG photo, dark base for bottom-left text --- */
+.hero-overlay {
+  background:
+    linear-gradient(180deg, rgba(9, 46, 28, 0.28) 0%, rgba(9, 46, 28, 0.05) 30%, rgba(9, 46, 28, 0) 54%),
+    linear-gradient(0deg, rgba(6, 24, 14, 0.98) 0%, rgba(6, 24, 14, 0.86) 16%, rgba(6, 24, 14, 0.52) 30%, rgba(6, 24, 14, 0.16) 46%, rgba(6, 24, 14, 0) 64%),
+    linear-gradient(90deg, rgba(8, 34, 20, 0.42) 0%, rgba(8, 34, 20, 0) 58%) !important;
+}
+
+.hero-bg {
+  animation: none !important;
+}
+
+.hero-title em {
+  color: #e6d7a4 !important;
+}
+
+.hero-cup-parallax {
+  transform: none !important;
+}
+
+.hero-cup {
+  width: auto !important;
+  animation: none !important;
+}
+
+.hero-chip {
+  transform: none !important;
+  animation: none !important;
+  background: rgba(12, 26, 19, 0.72) !important;
+  border: 1px solid rgba(255, 255, 255, 0.28) !important;
+  box-shadow: none !important;
+  letter-spacing: 0.4px !important;
+}
+
+.hero-chip-dot {
+  box-shadow: none !important;
+  animation: none !important;
+}
+
+/* --- Navbar: IG deep-green bar once scrolled --- */
+.nav-progress {
+  background: rgba(255, 255, 255, 0.14) !important;
+}
+
+.nav-progress > span {
+  background: var(--gold) !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+.nav-progress > span::after {
+  display: none !important;
+}
+
+.nav-indicator {
+  background: var(--gold) !important;
+  box-shadow: none !important;
+}
+
+.btn-nav::after {
+  display: none !important;
+}
+
+@media (min-width: 861px) {
+  html[data-theme='light'] .navbar-solid {
+    background: var(--emerald-deep) !important;
+    box-shadow: 0 4px 22px rgba(0, 0, 0, 0.28) !important;
+  }
+
+  html[data-theme='light'] .navbar-solid .logo,
+  html[data-theme='light'] .navbar-solid .logo-script,
+  html[data-theme='light'] .navbar-solid .nav-links a,
+  html[data-theme='light'] .navbar-solid .theme-toggle,
+  html[data-theme='light'] .navbar-solid .cart-toggle {
+    color: var(--cream) !important;
+  }
+
+  html[data-theme='light'] .navbar-solid .nav-links a.nav-active,
+  html[data-theme='light'] .navbar-solid .nav-links .nav-active {
+    color: var(--gold) !important;
+  }
+
+  html[data-theme='light'] .navbar-solid .logo-mark {
+    border-color: rgba(255, 255, 255, 0.28) !important;
+    color: var(--gold) !important;
+    background: rgba(255, 255, 255, 0.06) !important;
+  }
+
+  html[data-theme='light'] .navbar-solid .theme-toggle,
+  html[data-theme='light'] .navbar-solid .cart-toggle {
+    border-color: rgba(255, 255, 255, 0.22) !important;
+  }
+}
+
+/* --- Footer: single dark band, flattened CTA --- */
+.footer-cta {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* --- Preloader: quiet, light, emerald mark --- */
+.preloader {
+  background: var(--pg-bg) !important;
+}
+
+.pre-crown {
+  color: var(--caramel) !important;
+  filter: none !important;
+}
+
+.pre-logo {
+  color: var(--text) !important;
+}
+
+.pre-script {
+  color: var(--caramel) !important;
+}
+
+.pre-progress {
+  background: rgba(16, 40, 28, 0.12) !important;
+}
+
+.pre-progress span {
+  background: var(--caramel) !important;
+}
+
+/* --- Contrast fixes (WCAG pass) --- */
+.spot-actions .btn-ghost {
+  border-color: rgba(30, 122, 79, 0.5) !important;
+  color: var(--caramel) !important;
+}
+
+.spot-actions .btn-ghost:hover {
+  background: var(--caramel) !important;
+  border-color: var(--caramel) !important;
+  color: #fff !important;
+}
+
+.testi-verified {
+  border-color: rgba(30, 122, 79, 0.35) !important;
+  background: rgba(30, 122, 79, 0.09) !important;
+  color: var(--caramel) !important;
+}
+
+.reserve-confetti {
+  display: none !important;
+}
+
+/* --- Footer stays dark: lighten its ghost button --- */
+.footer-cta-actions .btn-ghost {
+  color: var(--cream) !important;
+  border-color: rgba(255, 255, 255, 0.45) !important;
+}
+
+.footer-cta-actions .btn-ghost:hover {
+  background: var(--cream) !important;
+  color: var(--espresso) !important;
+}
+
+/* =========================================================
+   DARK MODE — accents must flip light on dark surfaces
+   ========================================================= */
+[data-theme='dark'] {
+  --mint: #7fd6a8;
+  --mint-soft: rgba(127, 214, 168, 0.55);
+  --gold-text: #e3cd92;
+}
+
+/* Gold that must read as text/icon on light surfaces */
+.stars,
+.menu-star-on,
+.meal-nav-link.menu-tab-active .meal-nav-icon,
+.gallery-item figcaption span,
+.gallery-links a:hover,
+.gallery-rail:hover,
+.about-list-item:hover .about-list-icon,
+.reserve-trust li svg,
+.toast-icon,
+.cust-auth-script,
+.cust-auth-benefits svg,
+.cust-auth-switch:hover,
+.cust-login-btn:hover {
+  color: var(--gold-text) !important;
+}
+
+/* Emerald accent text -> mint */
+[data-theme='dark'] .kicker,
+[data-theme='dark'] .spot-kicker,
+[data-theme='dark'] .news-kicker,
+[data-theme='dark'] .stats-kicker,
+[data-theme='dark'] .why-badge,
+[data-theme='dark'] .meal-price,
+[data-theme='dark'] .about-polaroid-cap,
+[data-theme='dark'] .about-marquee-item,
+[data-theme='dark'] .testi-verified,
+[data-theme='dark'] .visit-status-text,
+[data-theme='dark'] .news-proof-text strong {
+  color: var(--mint) !important;
+}
+
+[data-theme='dark'] .testi-verified {
+  border-color: rgba(127, 214, 168, 0.4) !important;
+  background: rgba(127, 214, 168, 0.1) !important;
+}
+
+/* Deep-green text -> light text */
+[data-theme='dark'] .about-founder-name,
+[data-theme='dark'] .about-timeline-year,
+[data-theme='dark'] .about-stat-num,
+[data-theme='dark'] .testi-score,
+[data-theme='dark'] .gallery-handle,
+[data-theme='dark'] .reserve-step-label,
+[data-theme='dark'] .reserve-login-note span,
+[data-theme='dark'] .menu-services li,
+[data-theme='dark'] .cust-login-btn,
+[data-theme='dark'] .visit-block h3 {
+  color: var(--text) !important;
+}
+
+[data-theme='dark'] .reserve-trust li {
+  color: #e3cd92 !important;
+}
+
+/* Neutral dark-green labels -> light text on dark surfaces */
+[data-theme='dark'] .reserve-form label > span,
+[data-theme='dark'] .news-field > span,
+[data-theme='dark'] .hours li,
+[data-theme='dark'] .hours li .hours-time,
+[data-theme='dark'] .meal-nav-count,
+[data-theme='dark'] .cust-auth-tab,
+[data-theme='dark'] .cart-login-nudge p,
+[data-theme='dark'] .reserve-login-note,
+[data-theme='dark'] .reserve-summary-values,
+[data-theme='dark'] .reserve-done-meta span,
+[data-theme='dark'] .reserve-step-done .reserve-step-label,
+[data-theme='dark'] .reserve-step-current .reserve-step-label,
+[data-theme='dark'] .menu-empty-chip,
+[data-theme='dark'] .qv-review-form label > span,
+[data-theme='dark'] .meal-main:hover .meal-name-line h3,
+[data-theme='dark'] .cust-menu-item:hover {
+  color: var(--text) !important;
+}
+
+/* Accents (links, add buttons, toggles) -> mint */
+[data-theme='dark'] .gallery-links a,
+[data-theme='dark'] .testi-toggle,
+[data-theme='dark'] .testi-arrow,
+[data-theme='dark'] .meal-add,
+[data-theme='dark'] .stat-icon,
+[data-theme='dark'] .news-perk-icon,
+[data-theme='dark'] .news-done strong,
+[data-theme='dark'] .cust-auth-switch,
+[data-theme='dark'] .cust-auth-tab.is-active,
+[data-theme='dark'] .reserve-quick-btn.is-active,
+[data-theme='dark'] .reserve-guest.is-active,
+[data-theme='dark'] .reserve-quick-btn:hover,
+[data-theme='dark'] .reserve-guest:hover,
+[data-theme='dark'] .menu-view-btn:hover,
+[data-theme='dark'] .gallery-chip:hover,
+[data-theme='dark'] .qv-qty button,
+[data-theme='dark'] .cart-qty button {
+  color: var(--mint) !important;
+}
+
+/* Buttons on dark surfaces */
+[data-theme='dark'] .btn-ghost,
+[data-theme='dark'] .btn-outline {
+  color: var(--mint) !important;
+  border-color: var(--mint-soft) !important;
+}
+
+[data-theme='dark'] .btn-ghost:hover,
+[data-theme='dark'] .btn-outline:hover {
+  background: var(--mint) !important;
+  border-color: var(--mint) !important;
+  color: #06180f !important;
+}
+
+[data-theme='dark'] .spot-actions .btn-ghost {
+  border-color: var(--mint-soft) !important;
+  color: var(--mint) !important;
+}
+
+[data-theme='dark'] .reserve-field-label,
+[data-theme='dark'] .testi-person small,
+[data-theme='dark'] .visit-actions .btn:not(.btn-primary),
+[data-theme='dark'] .menu-cta .btn:not(.btn-primary) {
+  color: var(--mint) !important;
+}
+
+[data-theme='dark'] .menu-cta .btn-ghost {
+  border-color: var(--mint-soft) !important;
+}
+
+/* Dark navbar: same IG deep green */
+html[data-theme='dark'] .navbar-solid {
+  background: var(--emerald-deep) !important;
+  box-shadow: 0 4px 22px rgba(0, 0, 0, 0.35) !important;
+}
