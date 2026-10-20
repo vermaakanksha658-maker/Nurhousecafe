@@ -23,6 +23,7 @@
   --font-body: 'Jost', system-ui, sans-serif;
   --shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
   --radius: 16px;
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
   color-scheme: light;
 }
 
@@ -98,7 +99,7 @@ a {
 }
 
 .section-pad {
-  padding: 72px 0;
+  padding: 80px 0;
 }
 
 .kicker {
@@ -114,6 +115,9 @@ a {
   font-size: clamp(1.8rem, 4vw, 2.7rem);
   color: var(--text);
   margin-top: 6px;
+  line-height: 1.14;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
   transition: color 0.4s ease;
 }
 
@@ -269,7 +273,7 @@ input:focus-visible {
 
 @media (max-width: 768px) {
   .section-pad {
-    padding: 48px 0;
+    padding: 54px 0;
   }
 
   /* ===== MOBILE PERFORMANCE ===== */
@@ -543,13 +547,15 @@ html.nav-hidden .meal-nav {
   background: rgba(255, 251, 240, 0.07) !important;
   border: 1px solid rgba(211, 176, 114, 0.3) !important;
   box-shadow: none !important;
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease),
+    background-color 0.35s ease, border-color 0.35s ease !important;
 }
 
 .stat:hover {
-  transform: none !important;
+  transform: translateY(-5px) !important;
   background: rgba(255, 251, 240, 0.11) !important;
   border-color: rgba(211, 176, 114, 0.6) !important;
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.28) !important;
+  box-shadow: 0 18px 38px rgba(0, 0, 0, 0.32) !important;
 }
 
 .stat-num {
@@ -618,7 +624,6 @@ html.nav-hidden .meal-nav {
   background: var(--surface) !important;
   color: var(--text) !important;
   box-shadow: var(--shadow-soft) !important;
-  transform: none !important;
 }
 
 .spot-media img {
@@ -688,10 +693,6 @@ html.nav-hidden .meal-nav {
     linear-gradient(0deg, rgba(6, 24, 14, 0.84) 0%, rgba(6, 24, 14, 0.56) 14%, rgba(6, 24, 14, 0.24) 28%, rgba(6, 24, 14, 0) 44%),
     radial-gradient(ellipse 64% 58% at 50% 46%, rgba(6, 24, 14, 0.66) 0%, rgba(6, 24, 14, 0.38) 52%, rgba(6, 24, 14, 0) 80%),
     linear-gradient(180deg, rgba(9, 46, 28, 0.38) 0%, rgba(9, 46, 28, 0.1) 16%, rgba(9, 46, 28, 0) 30%) !important;
-}
-
-.hero-bg {
-  animation: none !important;
 }
 
 .hero-title em {
@@ -980,4 +981,67 @@ html.nav-hidden .meal-nav {
 html[data-theme='dark'] .navbar-solid {
   background: var(--emerald-deep) !important;
   box-shadow: 0 4px 22px rgba(0, 0, 0, 0.35) !important;
+}
+
+/* =========================================================
+   POLISH LAYER — subtle depth, motion & micro-interactions
+   ========================================================= */
+
+/* --- Gold divider grows in when a section arrives --- */
+.section-head.in-view .divider,
+.reveal.in-view .divider {
+  transform-origin: center;
+  animation: dividerGrow 0.9s 0.3s var(--ease) both;
+}
+
+@keyframes dividerGrow {
+  from {
+    transform: scaleX(0.12);
+    opacity: 0;
+  }
+  to {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+/* --- Buttons: refined timing, light sweep, warm shadows --- */
+.btn {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease),
+    background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+.btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 32%, rgba(255, 255, 255, 0.3) 50%, transparent 68%);
+  transform: translateX(-130%);
+  transition: transform 0.7s ease;
+  pointer-events: none;
+}
+
+.btn:hover::after {
+  transform: translateX(130%);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 12px 28px rgba(176, 141, 76, 0.4);
+}
+
+.btn-ghost:hover,
+.btn-outline:hover {
+  box-shadow: 0 10px 24px rgba(9, 46, 28, 0.22);
+}
+
+/* --- Spotlight card: gentle lift on hover --- */
+.spot {
+  transition: transform 0.45s var(--ease), box-shadow 0.45s ease !important;
+}
+
+.spot:hover {
+  transform: translateY(-6px) !important;
+  box-shadow: 0 26px 54px rgba(46, 36, 14, 0.16) !important;
 }

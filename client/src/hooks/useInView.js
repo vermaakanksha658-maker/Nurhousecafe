@@ -5,26 +5,47 @@ export default function useInView(options = {}) {
   const [inView, setInView] = useState(false);
 
   useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-
     if (typeof IntersectionObserver === 'undefined') {
       setInView(true);
       return;
     }
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setInView(true);
-          observer.unobserve(el);
-        }
-      },
-      { threshold: options.threshold ?? 0.15, rootMargin: options.rootMargin ?? '0px 0px -40px 0px' }
-    );
+    let observer = null;
+    let timer = null;
+    let cancelled = false;
+    let tries = 0;
 
-    observer.observe(el);
-    return () => observer.disconnect();
+    const attach = () => {
+      if (cancelled) return;
+      const el = ref.current;
+      if (!el) {
+        if (tries < 50) {
+          tries += 1;
+          timer = setTimeout(attach, 100);
+        } else {
+          setInView(true);
+        }
+        return;
+      }
+      observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setInView(true);
+            observer.unobserve(el);
+          }
+        },
+        { threshold: options.threshold ?? 0.15, rootMargin: options.rootMargin ?? '0px 0px -40px 0px' }
+      );
+      observer.observe(el);
+    };
+
+    attach();
+
+    return () => {
+      cancelled = true;
+      if (timer) clearTimeout(timer);
+      if (observer) observer.disconnect();
+    };
   }, []);
 
   return [ref, inView];

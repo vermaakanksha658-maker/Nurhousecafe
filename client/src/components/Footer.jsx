@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import useOpenStatus from '../hooks/useOpenStatus.js';
+import useInView from '../hooks/useInView.js';
 import './Footer.css';
 
 const quickLinks = [
@@ -81,6 +82,7 @@ const contacts = [
 
 export default function Footer() {
   const status = useOpenStatus();
+  const [footRef, footIn] = useInView({ threshold: 0.12 });
 
   return (
     <footer className="footer">
@@ -97,7 +99,7 @@ export default function Footer() {
       </div>
 
       <div className="footer-inner">
-        <div className="container">
+        <div className={`container reveal-stagger ${footIn ? 'in-view' : ''}`} ref={footRef}>
           <div className="footer-cta">
             <div className="footer-cta-copy">
               <h3>Reserve your table</h3>

@@ -324,6 +324,7 @@ export default function MenuPanel({ variant = 'full', limit = 6 }) {
   const [addedId, setAddedId] = useState(null);
   const addedTimer = useRef(null);
   const [ref, inView] = useInView();
+  const [spotRef, spotIn] = useInView();
   const { add } = useCart();
   const toast = useToast();
 
@@ -552,7 +553,8 @@ export default function MenuPanel({ variant = 'full', limit = 6 }) {
 
         {state === 'ready' && pick && (
           <div
-            className="spot"
+            className={`spot reveal reveal-up ${spotIn ? 'in-view' : ''}`}
+            ref={spotRef}
             onMouseEnter={() => setPickHover(true)}
             onMouseLeave={(e) => {
               setPickHover(false);
