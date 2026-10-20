@@ -634,11 +634,20 @@ html.nav-hidden .meal-nav {
 }
 
 .spot-dot {
+  background: transparent !important;
+}
+
+.spot-dot::after {
   background: var(--line) !important;
 }
 
 .spot-dot-active,
 .spot-dot-active:hover {
+  background: transparent !important;
+}
+
+.spot-dot-active::after,
+.spot-dot-active:hover::after {
   background: var(--caramel) !important;
 }
 
@@ -658,12 +667,13 @@ html.nav-hidden .meal-nav {
   color: #fff !important;
 }
 
-/* --- Hero: full-bleed IG photo, dark base for bottom-left text --- */
+/* --- Hero: photo-first overlay — center pool for desktop text,
+       bottom pool for mobile (content is bottom-pinned), top for navbar --- */
 .hero-overlay {
   background:
-    linear-gradient(180deg, rgba(9, 46, 28, 0.28) 0%, rgba(9, 46, 28, 0.05) 30%, rgba(9, 46, 28, 0) 54%),
-    linear-gradient(0deg, rgba(6, 24, 14, 0.98) 0%, rgba(6, 24, 14, 0.86) 16%, rgba(6, 24, 14, 0.52) 30%, rgba(6, 24, 14, 0.16) 46%, rgba(6, 24, 14, 0) 64%),
-    linear-gradient(90deg, rgba(8, 34, 20, 0.42) 0%, rgba(8, 34, 20, 0) 58%) !important;
+    linear-gradient(0deg, rgba(6, 24, 14, 0.84) 0%, rgba(6, 24, 14, 0.56) 14%, rgba(6, 24, 14, 0.24) 28%, rgba(6, 24, 14, 0) 44%),
+    radial-gradient(ellipse 64% 58% at 50% 46%, rgba(6, 24, 14, 0.66) 0%, rgba(6, 24, 14, 0.38) 52%, rgba(6, 24, 14, 0) 80%),
+    linear-gradient(180deg, rgba(9, 46, 28, 0.38) 0%, rgba(9, 46, 28, 0.1) 16%, rgba(9, 46, 28, 0) 30%) !important;
 }
 
 .hero-bg {

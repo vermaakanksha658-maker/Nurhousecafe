@@ -120,6 +120,12 @@
 }
 
 .cart-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  flex: 0 0 auto;
   border: 0;
   background: transparent;
   color: var(--card-muted);

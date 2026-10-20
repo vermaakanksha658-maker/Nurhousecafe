@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import useInView from '../hooks/useInView.js';
+import useOpenStatus, { HOURS, formatHour } from '../hooks/useOpenStatus.js';
 import { useCustomer } from '../customer/useCustomer.jsx';
 import './Reservation.css';
 
@@ -59,6 +60,8 @@ export default function Reservation() {
   const [slotError, setSlotError] = useState('');
   const [formError, setFormError] = useState('');
   const [ref, inView] = useInView();
+  const hoursStatus = useOpenStatus();
+  const todaySlot = HOURS.find((h) => h.days.includes(hoursStatus.day)) || HOURS[0];
   const prevDate = useRef('');
   const formRef = useRef(form);
   const submitRef = useRef(null);
@@ -288,9 +291,16 @@ export default function Reservation() {
           </ul>
           <ul className="reserve-points">
             <li>Table held for 15 minutes past your slot</li>
-            <li>Groups of 6+ — give us a call</li>
+            <li>Groups of 6+ &mdash; give us a call</li>
             <li>Cancel free up to 2 hours before</li>
           </ul>
+
+          <div className="reserve-hours-strip">
+            <span className={`reserve-hours-pill ${hoursStatus.open ? 'is-open' : ''}`}>{hoursStatus.text}</span>
+            <span className="reserve-hours-when">
+              Today {formatHour(todaySlot.open)} &ndash; {formatHour(todaySlot.close)}
+            </span>
+          </div>
         </div>
 
         <div className={`reserve-card reveal reveal-right ${inView ? 'in-view' : ''}`}>

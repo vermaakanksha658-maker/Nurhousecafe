@@ -297,6 +297,14 @@
   transform: translateX(3px);
 }
 
+.hero-cta .hero-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 32px;
+  padding: 4px 2px;
+}
+
 .hero-trust {
   display: flex;
   align-items: center;
@@ -424,6 +432,12 @@
   justify-content: center;
   padding-top: 8px;
   opacity: 0.85;
+}
+
+.hero-scroll::after {
+  content: '';
+  position: absolute;
+  inset: -6px -9px;
 }
 
 .hero-scroll span {

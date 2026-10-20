@@ -211,7 +211,7 @@
   font-size: 0.84rem;
   color: var(--caramel);
   cursor: pointer;
-  padding: 4px 8px;
+  padding: 7px 12px;
   transition: color 0.25s ease;
 }
 .cust-auth-switch:hover { color: var(--gold); }

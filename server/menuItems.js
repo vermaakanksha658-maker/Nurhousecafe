@@ -175,4 +175,20 @@ export const menuItems = [
     category: 'food',
     available: true,
   },
+  {
+    name: 'Mango Sticky Rice Matcha',
+    description: 'Ceremonial matcha with mango purée and sweet sticky-rice cream',
+    price: 6.75,
+    image: '/photos/ig-09.jpg',
+    category: 'tea',
+    available: true,
+  },
+  {
+    name: "S'mores Latte",
+    description: 'Espresso, toasted marshmallow, chocolate and graham cracker crumble',
+    price: 6.75,
+    image: '/photos/ig-06.jpg',
+    category: 'coffee',
+    available: true,
+  },
 ];

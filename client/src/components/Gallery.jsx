@@ -20,12 +20,12 @@ const shots = [
   },
   {
     src: '/photos/ig-04.jpg',
-    caption: "We're hiring baristas & bakers",
+    caption: 'The baristas of Nur House',
     tag: 'Cozy',
   },
   {
     src: '/photos/ig-05.jpg',
-    caption: 'Tuesdays: 20% off for little ones',
+    caption: 'Family friendly, every day',
     tag: 'Food',
   },
   {

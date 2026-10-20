@@ -1078,6 +1078,10 @@
   font-weight: 600;
 }
 
+.reserve-field-label small {
+  font-size: 0.75rem;
+}
+
 .reserve-form input,
 .reserve-date-row input[type='date'],
 .reserve-select-wrap select,
@@ -1326,4 +1330,62 @@
   .reserve-done {
     padding: 28px 20px 26px;
   }
+}
+
+/* ============================================================
+   Reserve intro: full-height column, photo absorbs slack,
+   hours card fills the bottom (no blank under last point)
+   ============================================================ */
+
+.reserve-grid {
+  align-items: stretch;
+}
+
+.reserve-intro {
+  display: flex;
+  flex-direction: column;
+}
+
+.reserve-intro-img {
+  flex: 1 1 auto;
+  min-height: 190px;
+  object-fit: cover;
+}
+
+.reserve-hours-strip {
+  flex: none;
+  margin-top: 26px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 12px;
+  padding: 12px 16px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: var(--shadow-soft);
+  transition: background 0.4s ease, border-color 0.4s ease;
+}
+
+.reserve-hours-when {
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.reserve-hours-pill {
+  flex: none;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 4px 11px;
+  border-radius: 999px;
+  background: var(--line);
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.reserve-hours-pill.is-open {
+  background: rgba(22, 127, 74, 0.12);
+  color: var(--emerald-deep);
 }

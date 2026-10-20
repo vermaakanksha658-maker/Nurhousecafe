@@ -3,9 +3,9 @@ import './Stats.css';
 
 const stats = [
   { value: 4.5, suffix: '', label: 'Google Rating', icon: 'star', decimals: 1, dots: 5 },
-  { value: 120, suffix: '+', label: 'Google Reviews', icon: 'smile', dots: 8 },
-  { value: 12, suffix: '+', label: 'Signature Drinks', icon: 'cup', dots: 8 },
-  { value: 15, suffix: '+', label: 'Fresh Bakes Daily', icon: 'star', dots: 5 },
+  { value: 150, suffix: '+', label: 'Google Reviews', icon: 'smile', dots: 8 },
+  { value: 14, suffix: '+', label: 'Signature Drinks', icon: 'cup', dots: 8 },
+  { value: 8, suffix: '+', label: 'Bakes & Bites Daily', icon: 'star', dots: 5 },
 ];
 
 const ICONS = {

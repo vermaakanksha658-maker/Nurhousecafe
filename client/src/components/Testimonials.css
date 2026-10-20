@@ -493,6 +493,7 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+  flex: 0 0 auto;
   width: 44px;
   height: 44px;
   border-radius: 50%;
@@ -532,14 +533,15 @@
 
 .testi-dots {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  gap: 9px;
+  gap: 0;
 }
 
 .testi-dot {
   position: relative;
-  width: 22px;
-  height: 22px;
+  width: 32px;
+  height: 32px;
   padding: 0;
   border: 0;
   border-radius: 50%;
@@ -550,7 +552,7 @@
 .testi-dot::before {
   content: '';
   position: absolute;
-  inset: 7px;
+  inset: 12px;
   border-radius: 50%;
   background: var(--line);
   transition: background 0.3s ease, transform 0.3s ease;
@@ -567,9 +569,9 @@
 
 .testi-ring {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  inset: 5px;
+  width: calc(100% - 10px);
+  height: calc(100% - 10px);
   transform: rotate(-90deg);
   pointer-events: none;
 }
@@ -687,5 +689,26 @@
   .testi-spark {
     animation: none;
     opacity: 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .testi-toggle {
+    width: 36px;
+    height: 36px;
+    flex: 0 0 auto;
+  }
+}
+
+@media (max-width: 560px) {
+  .testi-controls {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .testi-dots {
+    order: -1;
+    width: 100%;
+    flex: 0 0 auto;
   }
 }

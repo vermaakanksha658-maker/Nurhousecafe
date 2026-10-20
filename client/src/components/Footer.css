@@ -249,7 +249,7 @@
 }
 
 .footer-links li {
-  padding: 5px 0;
+  padding: 0;
   font-size: 0.9rem;
   font-weight: 300;
 }
@@ -257,6 +257,7 @@
 .footer-links a {
   position: relative;
   display: inline-block;
+  padding: 5px 0;
   transition: color 0.25s ease, padding-left 0.25s ease;
 }
 
@@ -574,7 +575,7 @@
   }
 
   .footer-contact-body small {
-    font-size: 0.68rem;
+    font-size: 0.72rem;
   }
 
   .footer-contact a {

@@ -56,7 +56,7 @@ export default function Hero() {
         </div>
         <div className="hero-trust">
           <span className="hero-stars" aria-hidden="true">★★★★★</span>
-          <span>4.5 &middot; 120+ Google Reviews</span>
+          <span>4.5 &middot; 150+ Google Reviews</span>
           <span className="hero-trust-dot">&middot;</span>
           <span>Dine-in &amp; Takeaway</span>
         </div>

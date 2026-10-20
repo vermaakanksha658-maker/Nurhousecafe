@@ -5,45 +5,59 @@ import './Testimonials.css';
 const fallbackReviews = [
   {
     _id: 'g1',
-    name: 'Sara Mohamed',
-    role: 'Google Review · Local Guide',
-    text: 'The salted date caramel latte is unlike anything else downtown. Cozy green interior, friendly staff and genuinely great coffee — a true neighbourhood gem.',
-    initials: 'SM',
+    name: 'Sarah A',
+    role: 'Google Review',
+    text: 'So happy to have this beautiful cafe in downtown. Drinks are 10/10 and the space is stunning. I tried the date cloud latte with almond milk: tasted great and the espresso and date syrup was impeccable. Fast wifi! Staff are so sweet. This will be my new remote working spot.',
+    initials: 'SA',
   },
   {
     _id: 'g2',
-    name: 'Daniel Reyes',
+    name: 'Inis',
     role: 'Google Review',
-    text: 'Came for the matcha, stayed for the cardamom loaf. Great spot to work in the morning with plenty of light and outlets.',
-    initials: 'DR',
+    text: "I've been to this cafe a few times and have yet to be disappointed! Tried their triple berry matcha as well as the salted date caramel cloud latte which is an absolute WINNER for me!! Also the location is a 10/10; super walkable area.",
+    initials: 'I',
   },
   {
     _id: 'g3',
-    name: 'Amina Warsame',
-    role: 'Google Review · Local Guide',
-    text: 'Love that the menu reflects so many cultures — the Somali shaah and Vietnamese egg coffee were both fantastic.',
-    initials: 'AW',
+    name: 'luqman mohamed',
+    role: 'Google Review',
+    text: 'Stopped by Nur House Cafe for their soft opening in downtown Minneapolis and loved every bit of it. I had a croissant and chai latte, simple, warm, and exactly what I needed.',
+    initials: 'LM',
   },
   {
     _id: 'g4',
-    name: 'Jordan Blake',
+    name: 'leo spott',
     role: 'Google Review',
-    text: 'Nice outdoor seating by the Commons. Croissants were warm and flaky. Will be back.',
-    initials: 'JB',
+    text: 'Very nice space with excellent indoor and outdoor seating. My cold brew was excellent and I will be back.',
+    initials: 'LS',
   },
   {
     _id: 'g5',
-    name: 'Mei Chen',
-    role: 'Google Review · Local Guide',
-    text: 'Triple berry matcha is a must-try. Staff were attentive and the space feels calm even when it is busy.',
-    initials: 'MC',
+    name: 'Mikalia B',
+    role: 'Google Review',
+    text: "I'm so glad I stumbled upon Nur House! First of all, I love the chai!! It's the perfect spice blend and I love how you can choose your sweetener and the level of sweetness. It's so nice to have an authentic chai in this area.",
+    initials: 'MB',
   },
   {
     _id: 'g6',
-    name: 'Ahmed Nur',
+    name: 'Nicole Palser',
     role: 'Google Review',
-    text: 'Beautiful spot across from the stadium. The bakes are fresh and the coffee is top notch.',
-    initials: 'AN',
+    text: 'We were looking for a coffee shop to work from one morning, and this was a great find! The lattes were excellent, and my husband ordered an egg sandwich that he said was really good - especially for only $6.',
+    initials: 'NP',
+  },
+  {
+    _id: 'g7',
+    name: 'Leila Rush',
+    role: 'Google Review',
+    text: 'The staff here is amazing and the coffee is absolutely stellar. I dropped my coffee, totally my error, and they rushed over to assist and even offered to make me another coffee. They were so incredibly kind and gracious about the situation.',
+    initials: 'LR',
+  },
+  {
+    _id: 'g8',
+    name: 'Ally',
+    role: 'Google Review',
+    text: 'Ok I really liked this place! They had interesting drink options and sweetness variation! My drink was the Triple Berry Cloud Matcha and was delicious.',
+    initials: 'A',
   },
 ];
 
@@ -239,7 +253,7 @@ export default function Testimonials() {
           <span className="testi-summary-body">
             <Stars rating={4.5} />
             <span className="testi-summary-text">
-              {fromApi ? `${count} verified guest ${count === 1 ? 'story' : 'stories'}` : '120+ Google reviews'}
+              {fromApi ? `${count} verified guest ${count === 1 ? 'story' : 'stories'}` : '150+ Google reviews'}
             </span>
           </span>
           <span className="testi-verified">
