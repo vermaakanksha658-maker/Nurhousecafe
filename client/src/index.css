@@ -494,6 +494,8 @@ html.nav-hidden .meal-nav {
   display: none !important;
 }
 
+.stats::before,
+.stats::after,
 .news::before,
 .why-card::before,
 .why-card::after,
@@ -511,7 +513,7 @@ html.nav-hidden .meal-nav {
 }
 
 .stats {
-  background: linear-gradient(150deg, #0d3d25 0%, #092e1c 55%, #071f13 100%) !important;
+  background: var(--emerald-deep) !important;
   color: #f4efe2 !important;
 }
 
