@@ -7,17 +7,17 @@
   --caramel: #1e7a4f;
   --emerald-deep: #092e1c;
   --latte: #ececec;
-  --cream: #ffffff;
+  --cream: #f7f3e9;
   --gold: #b08d4c;
-  --pg-bg: #ffffff;
+  --pg-bg: #faf7f0;
   --surface: #ffffff;
-  --section-alt: #f9f9f9;
+  --section-alt: #f1ecdf;
   --text: #14291b;
   --text-muted: #5b6f63;
   --card-muted: #5b6f63;
   --gold-text: #80622e;
-  --line: #e8e8e8;
-  --shadow-soft: 0 6px 18px rgba(17, 17, 17, 0.07);
+  --line: #e3dbc7;
+  --shadow-soft: 0 6px 18px rgba(60, 46, 22, 0.08);
   --font-serif: 'Playfair Display', Georgia, serif;
   --font-script: 'Jost', system-ui, sans-serif;
   --font-body: 'Jost', system-ui, sans-serif;
@@ -494,8 +494,6 @@ html.nav-hidden .meal-nav {
   display: none !important;
 }
 
-.stats::before,
-.stats::after,
 .news::before,
 .why-card::before,
 .why-card::after,
@@ -504,8 +502,7 @@ html.nav-hidden .meal-nav {
   display: none !important;
 }
 
-/* --- Section rhythm: light sections; Hero + Footer carry the accent --- */
-.stats,
+/* --- Section rhythm: light sections; Hero + Stats + Footer carry the accent --- */
 .why,
 .news,
 .reserve {
@@ -513,46 +510,59 @@ html.nav-hidden .meal-nav {
   color: var(--text) !important;
 }
 
+.stats {
+  background: linear-gradient(150deg, #0d3d25 0%, #092e1c 55%, #071f13 100%) !important;
+  color: #f4efe2 !important;
+}
+
 .why .section-title.why-title,
 .news .section-title.news-title {
   color: var(--text) !important;
 }
 
-.stats-kicker,
+.stats .section-title,
+.stats .section-title.why-title {
+  color: #f7f3e9 !important;
+}
+
+.stats-kicker {
+  color: #d3b072 !important;
+}
+
 .why .kicker,
 .news .news-kicker {
   color: var(--caramel) !important;
 }
 
-/* --- Stats --- */
+/* --- Stats: glass cards on the dark band --- */
 .stat {
-  background: var(--surface) !important;
-  border: 1px solid var(--line) !important;
-  box-shadow: var(--shadow-soft) !important;
+  background: rgba(255, 251, 240, 0.07) !important;
+  border: 1px solid rgba(211, 176, 114, 0.3) !important;
+  box-shadow: none !important;
 }
 
 .stat:hover {
   transform: none !important;
-  background: var(--surface) !important;
-  border-color: var(--caramel) !important;
-  box-shadow: 0 14px 30px rgba(16, 40, 28, 0.12) !important;
+  background: rgba(255, 251, 240, 0.11) !important;
+  border-color: rgba(211, 176, 114, 0.6) !important;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.28) !important;
 }
 
 .stat-num {
-  color: var(--text) !important;
+  color: #f7f3e9 !important;
   text-shadow: none !important;
 }
 
 .stat-label {
-  color: var(--text-muted) !important;
+  color: rgba(244, 239, 226, 0.72) !important;
 }
 
 .stat-icon {
-  color: var(--caramel) !important;
+  color: #d3b072 !important;
 }
 
 .stat:not(:first-child)::before {
-  background: linear-gradient(to bottom, transparent, var(--line), transparent) !important;
+  background: linear-gradient(to bottom, transparent, rgba(211, 176, 114, 0.35), transparent) !important;
 }
 
 /* --- Why Us: layout lives in components/WhyUs.css --- */
