@@ -496,6 +496,8 @@ html.nav-hidden .meal-nav {
 
 .stats::before,
 .stats::after,
+.footer::before,
+.footer::after,
 .news::before,
 .why-card::before,
 .why-card::after,
