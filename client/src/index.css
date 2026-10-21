@@ -1100,3 +1100,217 @@ html[data-theme='dark'] .navbar-solid {
 .about-btn svg {
   transition: transform 0.35s var(--ease);
 }
+
+/* =========================================================
+   EDITORIAL OVERHAUL — sharp, print-like, spec-sheet structure
+   (webliten-inspired: hairlines, giant display type, big rhythm)
+   ========================================================= */
+
+/* --- 1. Giant, tightly-tracked display headings --- */
+.section-title {
+  font-family: var(--font-serif) !important;
+  font-size: clamp(2.1rem, 4.8vw, 3.7rem) !important;
+  font-weight: 600 !important;
+  line-height: 1 !important;
+  letter-spacing: -0.045em !important;
+  word-spacing: 0.01em;
+  text-wrap: balance;
+}
+
+.section-head {
+  margin-bottom: clamp(40px, 6vw, 64px) !important;
+}
+
+.section-head .kicker {
+  margin-bottom: 18px;
+}
+
+/* Center hairline under section heads becomes a long thin rule */
+.section-head .divider {
+  width: 100% !important;
+  max-width: 340px !important;
+  height: 1px !important;
+  border-radius: 0 !important;
+  margin: 22px auto 0 !important;
+}
+
+.section-head-left .divider {
+  margin-left: 0 !important;
+  margin-right: auto !important;
+}
+
+/* --- 2. Huge editorial section rhythm + hairline separators --- */
+.section-pad {
+  padding: clamp(84px, 10.5vw, 150px) 0 !important;
+}
+
+.why,
+.news,
+.reserve,
+.menu-section,
+.testi,
+.gallery,
+.faq,
+.visit,
+.about,
+.stats {
+  border-top: 1px solid var(--line);
+}
+
+.stats {
+  border-top-color: rgba(211, 176, 114, 0.22);
+}
+
+/* --- 3. Sharp hairlines replace soft rounded dividers --- */
+.divider {
+  border-radius: 0 !important;
+}
+
+/* --- 4. Kicker / eyebrow: uppercase micro-label with gold dash --- */
+.kicker {
+  font-size: 0.72rem !important;
+  letter-spacing: 0.2em !important;
+}
+
+/* --- 5. Buttons: sharper, louder --- */
+.btn {
+  border-radius: 10px !important;
+  min-height: 50px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+.btn-primary {
+  background: var(--gold) !important;
+  color: var(--espresso) !important;
+  box-shadow: 0 1px 2px rgba(10, 31, 20, 0.2) !important;
+}
+
+.btn-primary:hover {
+  background: #c39a54 !important;
+  color: var(--espresso) !important;
+  box-shadow: 0 14px 34px -16px rgba(176, 141, 76, 0.85) !important;
+}
+
+.btn-ghost,
+.btn-outline {
+  border-radius: 10px !important;
+  border-color: var(--line) !important;
+  color: var(--text) !important;
+}
+
+.btn-ghost:hover,
+.btn-outline:hover {
+  border-color: var(--gold) !important;
+  color: var(--gold-text) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* --- 6. Giant outlined NUR HOUSE footer wordmark --- */
+.foot-mega-wrap {
+  position: relative;
+  overflow: hidden;
+  padding-top: clamp(28px, 5vw, 54px);
+}
+
+.foot-mega {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: clamp(3.2rem, 17vw, 13rem);
+  line-height: 0.8;
+  letter-spacing: -0.055em;
+  white-space: nowrap;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(211, 176, 114, 0.5);
+  background-image: radial-gradient(
+    circle 260px at var(--fmx, 50%) var(--fmy, 130%),
+    rgba(195, 154, 84, 0.85),
+    rgba(195, 154, 84, 0) 72%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  transform: translateY(0.1em);
+  user-select: none;
+  transition: -webkit-text-stroke-color 0.4s ease;
+}
+
+.foot-mega-wrap:hover .foot-mega {
+  -webkit-text-stroke-color: rgba(211, 176, 114, 0.72);
+}
+
+@media (max-width: 720px) {
+  .foot-mega {
+    font-size: clamp(2.6rem, 22vw, 5rem);
+    -webkit-text-stroke-width: 0.8px;
+  }
+}
+
+/* --- 7. Reading progress bar (gold) --- */
+.read-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: 120;
+  pointer-events: none;
+  transform: scaleX(var(--rp, 0));
+  transform-origin: 0 50%;
+  background: linear-gradient(90deg, transparent, var(--gold), #e6cd92);
+}
+
+/* --- 8. Nav scrolled: hairline underline --- */
+.navbar-solid {
+  border-bottom: 1px solid var(--line) !important;
+}
+
+/* --- 9. Section-head eyebrow span full row in grid heads --- */
+.faq .section-head .divider,
+.why .section-head .divider {
+  max-width: 220px !important;
+}
+
+/* --- 10. Hero: giant display headline + numbered colophon strip --- */
+.hero-title {
+  font-size: clamp(2.9rem, 8.4vw, 6.4rem) !important;
+  line-height: 0.98 !important;
+  letter-spacing: -0.05em !important;
+  font-weight: 700 !important;
+}
+
+.hero-spec {
+  counter-reset: hs;
+}
+
+.hero-spec li {
+  position: relative;
+  padding-top: 22px;
+}
+
+.hero-spec li::before {
+  counter-increment: hs;
+  content: '0' counter(hs);
+  position: absolute;
+  top: 12px;
+  left: 0;
+  font-family: var(--font-body);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+}
+
+.hero-spec-label {
+  padding-left: 0;
+}
+
+@media (max-width: 640px) {
+  .hero-title {
+    font-size: clamp(2.2rem, 9.5vw, 3rem) !important;
+  }
+}

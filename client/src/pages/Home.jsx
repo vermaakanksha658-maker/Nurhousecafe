@@ -13,6 +13,7 @@ import Newsletter from '../components/Newsletter.jsx';
 import Footer from '../components/Footer.jsx';
 import Preloader from '../components/Preloader.jsx';
 import BackToTop from '../components/BackToTop.jsx';
+import ReadingProgress from '../components/ReadingProgress.jsx';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import useButtonMagnet from '../hooks/useButtonMagnet.js';
@@ -37,6 +38,7 @@ function Home() {
     <>
       <Preloader />
       <Navbar />
+      <ReadingProgress />
       <main>
         <Hero />
         <About />
