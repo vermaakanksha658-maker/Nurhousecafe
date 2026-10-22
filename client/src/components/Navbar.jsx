@@ -137,7 +137,7 @@ export default function Navbar() {
     };
   }, [open]);
 
-  const solid = scrolled || onMenu;
+  const solid = true;
   const activeMenu = onMenu ? 'menu' : active;
 
   useEffect(() => {

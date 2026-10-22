@@ -2,9 +2,6 @@ import { useEffect, useState } from 'react';
 import useOpenStatus from '../hooks/useOpenStatus.js';
 import './Hero.css';
 
-const DESKTOP_IMAGE = '/photos/hero-2.jpg';
-const MOBILE_IMAGE = '/photos/ig-06.jpg';
-
 export default function Hero() {
   const [atTop, setAtTop] = useState(true);
   const status = useOpenStatus();
@@ -18,69 +15,40 @@ export default function Hero() {
 
   return (
     <header id="home" className="hero">
-      <div className="hero-bg-wrap" aria-hidden="true">
-        <div
-          className="hero-bg hero-bg-desktop is-active"
-          style={{ backgroundImage: `url(${DESKTOP_IMAGE})` }}
-        ></div>
-        <div
-          className="hero-bg hero-bg-mobile is-active"
-          style={{ backgroundImage: `url(${MOBILE_IMAGE})` }}
-        ></div>
-        <div className="hero-overlay"></div>
-      </div>
+      <div className="hero-inner container">
+        <div className="hero-content">
+          <span className="hero-eyebrow">
+            <span className="hero-eyebrow-line" aria-hidden="true"></span>
+            COFFEE · CULTURE · COMMUNITY
+            <span className="hero-eyebrow-line" aria-hidden="true"></span>
+          </span>
 
-      <div className="hero-content container">
-        <span className="hero-script">Somali coffee house &middot; Minneapolis</span>
-        <h1 className="hero-title">
-          Rich flavours,
-          <br />
-          <em>warm</em> moments.
-        </h1>
-        <p className="hero-sub">
-          Good coffee. Good mood. Great memories. — Somali-inspired drinks and fresh
-          housemade bakes at <strong>Nur House Cafe</strong>.
-        </p>
-        <div className="hero-cta">
-          <a href="#reserve" className="btn btn-primary">
-            Reserve a Table
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <rect x="3" y="4" width="18" height="18" rx="2" />
-              <path d="M16 2v4M8 2v4M3 10h18" />
-            </svg>
-          </a>
-          <a href="#menu" className="hero-link">
-            Explore Menu
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M5 12h14M13 6l6 6-6 6" />
-            </svg>
-          </a>
-        </div>
-        <div className="hero-trust">
-          <span className="hero-stars" aria-hidden="true">★★★★★</span>
-          <span>4.5 &middot; 150+ Google Reviews</span>
-          <span className="hero-trust-dot">&middot;</span>
-          <span>Dine-in &amp; Takeaway</span>
+          <h1 className="hero-title">
+            Rich flavours,
+            <br />
+            <em>warm moments.</em>
+          </h1>
+
+          <p className="hero-sub">Good coffee. Good mood. Great memories.</p>
+
+          <div className="hero-cta">
+            <a href="#menu" className="hero-btn hero-btn-solid">
+              Explore Menu
+            </a>
+            <a href="#reserve" className="hero-btn hero-btn-outline">
+              Reserve a table
+            </a>
+          </div>
         </div>
 
-        <ul className="hero-spec">
-          <li>
-            <span className="hero-spec-label">Find us</span>
-            <span className="hero-spec-value">515 S 4th St</span>
-          </li>
-          <li>
-            <span className="hero-spec-label">Today</span>
-            <span className="hero-spec-value">{status.sub.replace(/^Opens /, '')}</span>
-          </li>
-          <li>
-            <span className="hero-spec-label">Rated</span>
-            <span className="hero-spec-value">4.5 ★ &middot; 155+</span>
-          </li>
-          <li>
-            <span className="hero-spec-label">Proudly</span>
-            <span className="hero-spec-value">Somali-owned</span>
-          </li>
-        </ul>
+        <div className="hero-foot">
+          <div className="hero-foot-item hero-foot-status">
+            <span className={`hero-foot-dot ${status.open ? 'is-open' : ''}`} aria-hidden="true"></span>
+            {status.open ? 'OPEN NOW' : 'CLOSED'}
+          </div>
+          <div className="hero-foot-item">DOWNTOWN MINNEAPOLIS</div>
+          <div className="hero-foot-item">12 YEARS OF BREWING</div>
+        </div>
       </div>
 
       <a href="#story" className={`hero-scroll ${atTop ? 'is-shown' : ''}`} aria-label="Scroll down">
