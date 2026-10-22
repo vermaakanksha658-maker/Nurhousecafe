@@ -16,7 +16,31 @@ const BG_IMG = '/photos/hero-3.jpg';
 const TRUST = ['Instant confirmation', 'No prepayment', 'Free cancellation'];
 
 function isoDate(d) {
-  return d.toISOString().slice(0, 10);
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${d.getFullYear()}-${m}-${day}`;
+}
+
+function parseIso(s) {
+  const [y, m, d] = s.split('-').map(Number);
+  return new Date(y, m - 1, d);
+}
+
+function monthStart(d) {
+  return new Date(d.getFullYear(), d.getMonth(), 1);
+}
+
+const MONTH_NAMES = [
+  'January', 'February', 'March', 'April', 'May', 'June',
+  'July', 'August', 'September', 'October', 'November', 'December',
+];
+const DOW_SHORT = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
+const WD_SHORT = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+const MON_SHORT = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+function fmtDate(s) {
+  const d = parseIso(s);
+  return `${WD_SHORT[d.getDay()]}, ${d.getDate()} ${MON_SHORT[d.getMonth()]} ${d.getFullYear()}`;
 }
 
 function DoneCheck() {
@@ -65,6 +89,10 @@ export default function Reservation() {
   const prevDate = useRef('');
   const formRef = useRef(form);
   const submitRef = useRef(null);
+  const [calOpen, setCalOpen] = useState(false);
+  const [calMonth, setCalMonth] = useState(() => monthStart(new Date()));
+  const calRef = useRef(null);
+  const triggerRef = useRef(null);
 
   const set = (k) => (e) => {
     setForm({ ...form, [k]: e.target.value });
@@ -120,6 +148,34 @@ export default function Reservation() {
     prevDate.current = form.date;
   }, [form.date]);
 
+  // Close the calendar on outside click / Esc.
+  useEffect(() => {
+    if (!calOpen) return;
+    const onDown = (e) => {
+      if (calRef.current?.contains(e.target) || triggerRef.current?.contains(e.target)) return;
+      setCalOpen(false);
+    };
+    const onKey = (e) => {
+      if (e.key === 'Escape') setCalOpen(false);
+    };
+    document.addEventListener('pointerdown', onDown);
+    document.addEventListener('keydown', onKey);
+    return () => {
+      document.removeEventListener('pointerdown', onDown);
+      document.removeEventListener('keydown', onKey);
+    };
+  }, [calOpen]);
+
+  // Follow quick-chip date changes while the popover is open.
+  useEffect(() => {
+    if (calOpen && form.date) setCalMonth(monthStart(parseIso(form.date)));
+  }, [calOpen, form.date]);
+
+  const openCal = () => {
+    setCalMonth(monthStart(form.date ? parseIso(form.date) : new Date()));
+    setCalOpen(true);
+  };
+
   const submit = async (e) => {
     e?.preventDefault();
 
@@ -140,7 +196,7 @@ export default function Reservation() {
           : missing.includes('a valid phone number')
             ? '.reserve-form input[type=tel]'
             : missing.includes('a date')
-              ? '.reserve-date-row input[type=date]'
+              ? '.reserve-date-trigger'
               : '.reserve-slots'
       );
       if (firstEmpty) firstEmpty.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -228,6 +284,16 @@ export default function Reservation() {
   }, []);
 
   const minDate = useMemo(() => isoDate(new Date()), []);
+
+  const calGrid = useMemo(() => {
+    const y = calMonth.getFullYear();
+    const m = calMonth.getMonth();
+    const offset = (new Date(y, m, 1).getDay() + 6) % 7; // Monday-first
+    const total = new Date(y, m + 1, 0).getDate();
+    const cells = Array(offset).fill(null);
+    for (let d = 1; d <= total; d++) cells.push(d);
+    return { y, m, cells };
+  }, [calMonth]);
 
   const blockedReason =
     state === 'loading'
@@ -392,14 +458,94 @@ export default function Reservation() {
               <div className="reserve-field">
                 <span className="reserve-field-label">Date</span>
                 <div className="reserve-date-row">
-                  <input
-                    type="date"
-                    min={minDate}
-                    value={form.date}
-                    onChange={set('date')}
-                    aria-label="Date"
-                    className={formError.includes('a date') ? 'has-error' : ''}
-                  />
+                  <div className="reserve-date-anchor">
+                    <button
+                      type="button"
+                      ref={triggerRef}
+                      className={`reserve-date-trigger ${calOpen ? 'is-open' : ''} ${form.date ? '' : 'is-placeholder'} ${formError.includes('a date') ? 'has-error' : ''}`}
+                      onClick={() => (calOpen ? setCalOpen(false) : openCal())}
+                      aria-haspopup="dialog"
+                      aria-expanded={calOpen}
+                      aria-label="Date"
+                    >
+                      <span className="reserve-date-trigger-text">
+                        {form.date ? fmtDate(form.date) : 'Pick a date'}
+                      </span>
+                      <svg
+                        className="reserve-date-trigger-icon"
+                        viewBox="0 0 24 24"
+                        width="16"
+                        height="16"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1.7"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        aria-hidden="true"
+                      >
+                        <rect x="3" y="5" width="18" height="16" rx="3" />
+                        <path d="M8 3v4M16 3v4M3 10.5h18" />
+                      </svg>
+                    </button>
+
+                    {calOpen && (
+                      <div className="reserve-cal" ref={calRef} role="dialog" aria-label="Choose a date">
+                        <div className="reserve-cal-head">
+                          <button
+                            type="button"
+                            className="reserve-cal-nav"
+                            aria-label="Previous month"
+                            onClick={() => setCalMonth(new Date(calGrid.y, calGrid.m - 1, 1))}
+                          >
+                            &lsaquo;
+                          </button>
+                          <span className="reserve-cal-title">
+                            {MONTH_NAMES[calGrid.m]} {calGrid.y}
+                          </span>
+                          <button
+                            type="button"
+                            className="reserve-cal-nav"
+                            aria-label="Next month"
+                            onClick={() => setCalMonth(new Date(calGrid.y, calGrid.m + 1, 1))}
+                          >
+                            &rsaquo;
+                          </button>
+                        </div>
+                        <div className="reserve-cal-dow" aria-hidden="true">
+                          {DOW_SHORT.map((d) => (
+                            <span key={d}>{d}</span>
+                          ))}
+                        </div>
+                        <div className="reserve-cal-grid">
+                          {calGrid.cells.map((d, i) => {
+                            if (d === null) {
+                              return <span key={`cal-e${i}`} className="reserve-cal-empty" aria-hidden="true" />;
+                            }
+                            const iso = `${calGrid.y}-${String(calGrid.m + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+                            const past = iso < minDate;
+                            const today = iso === minDate;
+                            const sel = iso === form.date;
+                            return (
+                              <button
+                                type="button"
+                                key={iso}
+                                disabled={past}
+                                className={`reserve-cal-day${today ? ' is-today' : ''}${sel ? ' is-sel' : ''}`}
+                                aria-pressed={sel}
+                                onClick={() => {
+                                  setForm({ ...form, date: iso });
+                                  setCalOpen(false);
+                                }}
+                              >
+                                {d}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
                   <div className="reserve-quick">
                     {quickDates.map((q) => (
                       <button

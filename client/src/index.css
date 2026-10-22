@@ -1207,48 +1207,6 @@ html[data-theme='dark'] .navbar-solid {
   box-shadow: none !important;
 }
 
-/* --- 6. Giant outlined NUR HOUSE footer wordmark --- */
-.foot-mega-wrap {
-  position: relative;
-  overflow: hidden;
-  padding-top: clamp(28px, 5vw, 54px);
-}
-
-.foot-mega {
-  display: block;
-  width: 100%;
-  text-align: center;
-  font-family: var(--font-serif);
-  font-weight: 700;
-  font-size: clamp(3.2rem, 17vw, 13rem);
-  line-height: 0.8;
-  letter-spacing: -0.055em;
-  white-space: nowrap;
-  color: transparent;
-  -webkit-text-stroke: 1px rgba(211, 176, 114, 0.5);
-  background-image: radial-gradient(
-    circle 260px at var(--fmx, 50%) var(--fmy, 130%),
-    rgba(195, 154, 84, 0.85),
-    rgba(195, 154, 84, 0) 72%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  transform: translateY(0.1em);
-  user-select: none;
-  transition: -webkit-text-stroke-color 0.4s ease;
-}
-
-.foot-mega-wrap:hover .foot-mega {
-  -webkit-text-stroke-color: rgba(211, 176, 114, 0.72);
-}
-
-@media (max-width: 720px) {
-  .foot-mega {
-    font-size: clamp(2.6rem, 22vw, 5rem);
-    -webkit-text-stroke-width: 0.8px;
-  }
-}
-
 /* --- 7. Reading progress bar (gold) --- */
 .read-progress {
   position: fixed;

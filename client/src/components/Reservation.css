@@ -1120,6 +1120,207 @@
   border-color: #ff9d92 !important;
 }
 
+/* ---------- Date trigger + calendar popover (emerald card) ---------- */
+
+.reserve-date-anchor {
+  position: relative;
+  display: inline-block;
+}
+
+.reserve-date-trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-width: 212px;
+  padding: 12px 16px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1.5px solid rgba(255, 255, 255, 0.22);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.reserve-date-trigger:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.reserve-date-trigger.is-open,
+.reserve-date-trigger:focus-visible {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 4px rgba(176, 141, 76, 0.24);
+}
+
+.reserve-date-trigger.has-error {
+  border-color: #ff9d92;
+}
+
+.reserve-date-trigger.is-placeholder .reserve-date-trigger-text {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.reserve-date-trigger-icon {
+  flex: none;
+  opacity: 0.75;
+}
+
+.reserve-cal {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 60;
+  width: 288px;
+  max-width: calc(100vw - 48px);
+  padding: 14px;
+  background: #0b3520;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 16px;
+  box-shadow: 0 22px 48px rgba(0, 0, 0, 0.42);
+}
+
+.reserve-cal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.reserve-cal-nav {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+  font-size: 1.05rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.reserve-cal-nav:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: var(--gold);
+}
+
+.reserve-cal-title {
+  font-family: var(--font-serif);
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 0.4px;
+}
+
+.reserve-cal-dow {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 3px;
+  margin-bottom: 4px;
+}
+
+.reserve-cal-dow span {
+  text-align: center;
+  font-size: 0.64rem;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  color: rgba(255, 255, 255, 0.5);
+  padding: 4px 0;
+}
+
+.reserve-cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 3px;
+}
+
+.reserve-cal-empty {
+  height: 34px;
+}
+
+.reserve-cal-day {
+  height: 34px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.88);
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+
+.reserve-cal-day:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.reserve-cal-day:disabled {
+  color: rgba(255, 255, 255, 0.24);
+  cursor: not-allowed;
+}
+
+.reserve-cal-day.is-today {
+  box-shadow: inset 0 0 0 1.5px var(--gold);
+  color: var(--gold);
+}
+
+.reserve-cal-day.is-sel,
+.reserve-cal-day.is-sel:hover {
+  background: #fff;
+  color: var(--emerald-deep);
+  font-weight: 700;
+  box-shadow: none;
+}
+
+/* ---------- Quick date chips (emerald card) ---------- */
+
+.reserve-quick-btn {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(255, 255, 255, 0.28) !important;
+  color: rgba(255, 255, 255, 0.88) !important;
+}
+
+.reserve-quick-btn:hover {
+  background: rgba(255, 255, 255, 0.14) !important;
+  border-color: var(--gold) !important;
+  color: #fff !important;
+}
+
+.reserve-quick-btn.is-active {
+  background: #fff !important;
+  border-color: #fff !important;
+  color: var(--emerald-deep) !important;
+}
+
+/* ---------- Slots panel (emerald card) ---------- */
+
+.reserve-slots {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border-color: rgba(255, 255, 255, 0.16) !important;
+}
+
+.reserve-slots.is-empty {
+  border-color: #ff9d92 !important;
+}
+
+.reserve-slot-meta {
+  color: rgba(255, 255, 255, 0.68) !important;
+}
+
+.reserve-slot-hint {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
 .reserve-select-wrap svg {
   color: rgba(255, 255, 255, 0.8) !important;
 }

@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { useEffect, useRef } from 'react';
 import useOpenStatus from '../hooks/useOpenStatus.js';
 import useInView from '../hooks/useInView.js';
 import './Footer.css';
@@ -83,22 +82,6 @@ const contacts = [
 export default function Footer() {
   const status = useOpenStatus();
   const [footRef, footIn] = useInView({ threshold: 0.12 });
-  const megaRef = useRef(null);
-
-  const onMegaMove = (e) => {
-    const el = megaRef.current;
-    if (!el) return;
-    const r = el.getBoundingClientRect();
-    el.style.setProperty('--fmx', `${e.clientX - r.left}px`);
-    el.style.setProperty('--fmy', `${e.clientY - r.top}px`);
-  };
-
-  const onMegaLeave = () => {
-    const el = megaRef.current;
-    if (!el) return;
-    el.style.setProperty('--fmx', '50%');
-    el.style.setProperty('--fmy', '130%');
-  };
 
   return (
     <footer className="footer">
@@ -216,17 +199,6 @@ export default function Footer() {
             <p>&copy; {new Date().getFullYear()} Nur House Cafe. All rights reserved.</p>
             <span className="footer-legal">Privacy · Terms · Cookies</span>
           </div>
-        </div>
-
-        <div className="foot-mega-wrap" aria-hidden="true">
-          <span
-            className="foot-mega"
-            ref={megaRef}
-            onMouseMove={onMegaMove}
-            onMouseLeave={onMegaLeave}
-          >
-            Nur House
-          </span>
         </div>
       </div>
     </footer>

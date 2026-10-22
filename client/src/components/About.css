@@ -800,6 +800,19 @@
     border-radius: 138px 138px 8px 8px;
   }
 
+  .about-badge {
+    top: 40px;
+    bottom: auto;
+  }
+
+  .about-founder {
+    margin-top: 18px;
+  }
+
+  .about-media {
+    margin-bottom: var(--about-gap);
+  }
+
   .about-text .kicker {
     margin-top: 0;
   }
@@ -836,7 +849,7 @@
   }
 
   .about-founder {
-    margin-top: -48px;
+    margin-top: 18px;
   }
 
   .about-timeline {
