@@ -2,6 +2,7 @@
   position: relative;
   overflow: hidden;
   transition: background-color 0.4s ease;
+  --about-gap: 88px;
 }
 
 /* ---------- Giant watermark bean ---------- */
@@ -124,10 +125,27 @@
 }
 
 .section-pad.about {
-  padding-bottom: 24px;
+  padding-bottom: 0 !important;
+}
+
+/* Divider → drinks marquee: equal space above & below the marquee */
+.about-grid {
+  margin-bottom: 32px;
+}
+
+.about + .section-pad.menu-section {
+  padding-top: 32px !important;
+}
+
+.about + .section-pad.menu-section .menu-marquee {
+  margin-bottom: 32px;
 }
 
 .about-media {
+  position: relative;
+}
+
+.about-media-stage {
   position: relative;
 }
 
@@ -251,9 +269,9 @@
 
 .about-polaroid {
   position: absolute;
-  left: -26px;
-  bottom: 30px;
-  z-index: 4;
+  left: 22px;
+  bottom: 84px;
+  z-index: 6;
   width: 152px;
   height: 156px;
   perspective: 900px;
@@ -332,7 +350,7 @@
   position: absolute;
   bottom: -22px;
   right: -14px;
-  z-index: 5;
+  z-index: 7;
   background: var(--mocha);
   color: var(--cream);
   border-radius: var(--radius);
@@ -357,15 +375,16 @@
 
 .about-founder {
   position: relative;
+  z-index: 5;
   display: flex;
   align-items: center;
   gap: 16px;
-  margin-top: 34px;
+  margin-top: -60px;
   padding: 18px 20px;
   background: var(--surface);
   border-radius: var(--radius);
   border: 1px solid var(--line);
-  box-shadow: var(--shadow-soft);
+  box-shadow: 0 20px 44px rgba(11, 32, 24, 0.16);
   opacity: 0;
   transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(18px);
   transition: opacity 0.7s ease 0.25s, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.25s,
@@ -448,62 +467,58 @@
   color: var(--card-muted);
 }
 
+.about-text .kicker {
+  display: block;
+  margin-top: 28px;
+  margin-bottom: 12px;
+}
+
 .about-quote {
   position: relative;
-  margin: 6px 0 20px;
+  margin: 14px 0 20px;
   padding-left: 20px;
   border-left: 2px solid var(--gold);
-  font-family: var(--font-script);
-  font-size: clamp(1.5rem, 2.8vw, 2rem);
-  line-height: 1.25;
-  color: var(--caramel);
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(1.45rem, 2.6vw, 1.9rem);
+  line-height: 1.3;
+  color: var(--gold-text);
+}
+
+[data-theme='dark'] .about-quote {
+  color: var(--mint);
 }
 
 .about-para {
-  color: var(--text-muted);
-  font-weight: 300;
+  color: var(--text);
+  font-weight: 400;
+  max-width: 62ch;
   margin: 18px 0 24px;
   transition: color 0.4s ease;
 }
 
 .about-hl {
-  position: relative;
-  z-index: 0;
   padding: 0 3px;
   color: inherit;
-  background: transparent;
+  background-color: transparent;
+  background-image: linear-gradient(100deg, rgba(194, 160, 90, 0.42), rgba(236, 223, 184, 0.55));
+  background-repeat: no-repeat;
+  background-size: 0% 86%;
+  background-position: left 88%;
+  transition: background-size 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.35s;
 }
 
-.about-hl::before {
-  content: '';
-  position: absolute;
-  inset: 6% -2px 4%;
-  z-index: -1;
-  border-radius: 3px;
-  background: linear-gradient(100deg, rgba(194,160,90, 0.42), rgba(236,223,184, 0.55));
-  transform: scaleX(0);
-  transform-origin: left center;
-  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.about-hl:nth-of-type(1)::before {
-  transition-delay: 0.55s;
-}
-
-.about-hl:nth-of-type(2)::before {
-  transition-delay: 0.8s;
-}
-
-.reveal.in-view .about-hl::before,
-.about-text.in-view .about-hl::before {
-  transform: scaleX(1);
+.reveal.in-view .about-hl,
+.about-text.in-view .about-hl {
+  background-size: 100% 86%;
 }
 
 .about-btn {
   display: inline-flex;
   align-items: center;
   gap: 9px;
-  margin: 2px 0 30px;
+  margin: 2px 0 36px;
   transition: transform 0.25s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
 
@@ -523,18 +538,26 @@
 
 .about-list {
   list-style: none;
-  margin-bottom: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: var(--about-gap);
 }
 
 .about-list-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 13px;
-  padding: 9px 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 10px 16px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
   color: var(--text-muted);
+  font-size: 0.88rem;
   opacity: 0;
-  transform: translateX(-14px);
-  transition: opacity 0.55s ease var(--d, 0s), transform 0.55s ease var(--d, 0s), color 0.3s ease;
+  transform: translateY(10px);
+  transition: opacity 0.55s ease var(--d, 0s), transform 0.55s ease var(--d, 0s), color 0.3s ease,
+    border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .about-list-item.in-view {
@@ -544,13 +567,14 @@
 
 .about-list-item:hover {
   color: var(--mocha);
+  border-color: rgba(194, 160, 90, 0.55);
+  box-shadow: 0 8px 18px rgba(11, 32, 24, 0.08);
 }
 
 .about-list-icon {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   flex: none;
-  margin-top: 3px;
   color: var(--caramel);
   transition: transform 0.4s ease, color 0.3s ease;
 }
@@ -569,7 +593,7 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 18px;
-  margin: 26px 0 30px;
+  margin: 0 0 var(--about-gap);
   padding-top: 4px;
 }
 
@@ -650,17 +674,17 @@
 
 .about-timeline-text {
   display: block;
-  font-size: 0.78rem;
-  font-weight: 300;
-  line-height: 1.45;
-  color: var(--card-muted);
+  font-size: 0.88rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--text-muted);
 }
 
 .about-stats {
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
-  margin-bottom: 32px;
+  margin-bottom: 0;
   perspective: 800px;
 }
 
@@ -718,7 +742,7 @@
   align-items: center;
   gap: 16px;
   max-width: 1180px;
-  margin: 56px auto 0;
+  margin: 24px auto 0;
   padding: 0 24px;
 }
 
@@ -742,59 +766,6 @@
   }
 }
 
-/* ---------- Marquee ribbon ---------- */
-
-.about-marquee {
-  position: relative;
-  z-index: 1;
-  overflow: hidden;
-  margin: 0 0 8px;
-  padding: 14px 0;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  background: var(--surface);
-  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-}
-
-.about-marquee-track {
-  display: flex;
-  width: max-content;
-  animation: marqueeSlide 26s linear infinite;
-}
-
-.about-marquee-group {
-  display: flex;
-  align-items: center;
-}
-
-.about-marquee-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  padding: 0 26px;
-  font-family: var(--font-serif);
-  font-size: 0.95rem;
-  font-weight: 600;
-  letter-spacing: 2.6px;
-  text-transform: uppercase;
-  color: var(--caramel);
-  white-space: nowrap;
-}
-
-.about-marquee-bean {
-  width: 15px;
-  height: 15px;
-  color: var(--gold);
-  flex: none;
-}
-
-@keyframes marqueeSlide {
-  to {
-    transform: translateX(-50%);
-  }
-}
-
 @media (max-width: 1000px) {
   .about-polaroid {
     display: none;
@@ -808,12 +779,16 @@
 
 @media (max-width: 900px) {
   .section-pad.about {
-    padding-bottom: 28px;
+    padding-bottom: 0 !important;
+  }
+
+  .about {
+    --about-gap: 56px;
   }
 
   .about-grid {
     grid-template-columns: 1fr;
-    gap: 48px;
+    gap: 56px;
   }
 
   .about-media-frame {
@@ -824,11 +799,19 @@
   .about-media-frame::after {
     border-radius: 138px 138px 8px 8px;
   }
+
+  .about-text .kicker {
+    margin-top: 0;
+  }
 }
 
 @media (max-width: 600px) {
   .section-pad.about {
-    padding-bottom: 10px;
+    padding-bottom: 0 !important;
+  }
+
+  .about {
+    --about-gap: 44px;
   }
 
   .about-media-frame {
@@ -839,6 +822,21 @@
   .about-media-frame::after {
     border-radius: 108px 108px 8px 8px;
     inset: 10px;
+  }
+
+  .about-polaroid {
+    width: 120px;
+    height: 124px;
+    left: 14px;
+    bottom: 64px;
+  }
+
+  .about-polaroid-front img {
+    height: 74px;
+  }
+
+  .about-founder {
+    margin-top: -48px;
   }
 
   .about-timeline {
@@ -852,21 +850,19 @@
   }
 
   .about-divider {
-    margin-top: 40px;
+    margin-top: 18px;
   }
 
-  .about-marquee-item {
-    font-size: 0.85rem;
-    letter-spacing: 2px;
-    padding: 0 18px;
+  .about-list-item {
+    font-size: 0.84rem;
+    padding: 9px 14px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .about-media-inner,
   .about-fx,
-  .about-divider-icon,
-  .about-marquee-track {
+  .about-divider-icon {
     animation: none;
   }
 
@@ -887,8 +883,8 @@
     transform: none;
   }
 
-  .about-hl::before {
-    transform: scaleX(1);
+  .about-hl {
+    background-size: 100% 86%;
     transition: none;
   }
 

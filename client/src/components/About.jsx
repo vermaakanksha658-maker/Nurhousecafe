@@ -20,12 +20,10 @@ const TIMELINE = [
 ];
 
 const STATS = [
-  { value: 100, suffix: '%', label: 'made with care' },
-  { value: 1, suffix: '', label: 'warm welcome, every time' },
-  { value: 100, suffix: '%', label: 'hospitality, always' },
+  { num: '4.5', label: 'Google rating' },
+  { num: '12', label: 'Years of brewing' },
+  { num: 'Downtown', label: 'Minneapolis' },
 ];
-
-const MARQUEE_WORDS = ['Fresh daily', 'Made to order', 'Family friendly', 'Celebrations', 'Served warm'];
 
 function prefersReducedMotion() {
   return typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
@@ -49,34 +47,10 @@ function BigBean() {
   );
 }
 
-function StatChip({ value, suffix, label, inView, index = 0 }) {
-  const [n, setN] = useState(0);
-
-  useEffect(() => {
-    if (!inView) return;
-    if (prefersReducedMotion()) {
-      setN(value);
-      return;
-    }
-    let raf;
-    const startedAt = performance.now();
-    const duration = 1100;
-    const tick = (now) => {
-      const p = Math.min((now - startedAt) / duration, 1);
-      const eased = 1 - Math.pow(1 - p, 3);
-      setN(Math.round(eased * value));
-      if (p < 1) raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [inView, value]);
-
+function StatChip({ num, label, index = 0 }) {
   return (
     <div className="about-stat" style={{ '--i': index }}>
-      <span className="about-stat-num">
-        {n}
-        {suffix}
-      </span>
+      <span className="about-stat-num">{num}</span>
       <span className="about-stat-label">{label}</span>
     </div>
   );
@@ -200,25 +174,27 @@ export default function About() {
 
       <div className="container about-grid">
         <div className={`about-media reveal reveal-left ${leftIn ? 'in-view' : ''}`} ref={leftRef}>
-          <div
-            className="about-media-frame"
-            ref={frameRef}
-            onMouseMove={onFrameMove}
-            onMouseLeave={onFrameLeave}
-          >
-            <div className="about-media-inner" ref={parallaxRef}>
-              <img
-                src={MAIN_IMG}
-                alt="Warm, cozy cafe interior with soft afternoon light"
-                loading="lazy"
-              />
+          <div className="about-media-stage">
+            <div
+              className="about-media-frame"
+              ref={frameRef}
+              onMouseMove={onFrameMove}
+              onMouseLeave={onFrameLeave}
+            >
+              <div className="about-media-inner" ref={parallaxRef}>
+                <img
+                  src={MAIN_IMG}
+                  alt="Warm, cozy cafe interior with soft afternoon light"
+                  loading="lazy"
+                />
+              </div>
+              <span className="about-grain" aria-hidden="true"></span>
+              <span className="about-media-overlay">
+                <span className="about-media-caption">Behind the counter</span>
+              </span>
+              <span className="about-media-glow" aria-hidden="true"></span>
+              <span className="about-media-glow-2" aria-hidden="true"></span>
             </div>
-            <span className="about-grain" aria-hidden="true"></span>
-            <span className="about-media-overlay">
-              <span className="about-media-caption">Behind the counter</span>
-            </span>
-            <span className="about-media-glow" aria-hidden="true"></span>
-            <span className="about-media-glow-2" aria-hidden="true"></span>
 
             <div className="about-polaroid">
               <div className="about-polaroid-inner">
@@ -274,7 +250,7 @@ export default function About() {
             Coffee should be warm, generous and shared.
           </blockquote>
           <p className="about-para">
-            Nur House Cafe brings together Somali-inspired drinks, global flavours and warm
+            Nur House Cafe brings together Somali-inspired drinks, global flavors and warm
             hospitality under one roof — a downtown Minneapolis spot where{' '}
             <mark className="about-hl">every cup feels like coming home</mark>.
           </p>
@@ -321,24 +297,9 @@ export default function About() {
 
           <div className={`about-stats ${statsIn ? 'about-stats-in' : ''}`} ref={statsRef}>
             {STATS.map((s, i) => (
-              <StatChip key={s.label} value={s.value} suffix={s.suffix} label={s.label} inView={statsIn} index={i} />
+              <StatChip key={s.label} num={s.num} label={s.label} index={i} />
             ))}
           </div>
-        </div>
-      </div>
-
-      <div className="about-marquee" aria-hidden="true">
-        <div className="about-marquee-track">
-          {[0, 1].map((k) => (
-            <span className="about-marquee-group" key={k}>
-              {MARQUEE_WORDS.map((w) => (
-                <span className="about-marquee-item" key={w}>
-                  <BeanIcon className="about-marquee-bean" />
-                  {w}
-                </span>
-              ))}
-            </span>
-          ))}
         </div>
       </div>
 
